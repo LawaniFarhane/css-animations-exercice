@@ -54,7 +54,14 @@ export function AnimationsCSS() {
     // Regardez plus bas pour utiliser la propriété className directement sur l'élément!
     
     // TODO: Cacher: Pour cacher, il faut d'abord ajouter la classe "fade-out" à la carte, puis attendre 500ms pour que l'animation se termine avant de mettre à jour l'état
-    
+    if (!visible) {
+    const carte = document.getElementById(firstCardId);
+
+    carte?.classList.add("fade-out");
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+
     setCardVisible(visible);
   }
 
@@ -93,7 +100,7 @@ export function AnimationsCSS() {
             </div>
             <div className="demo-stage hand-stage" aria-label="Démonstration de l’apparition des cartes">
               <div className="card-row">
-                {cardVisible && <PlayingCard id={firstCardId} /* TODO: On peut mettre la classe d'animation fade-in ici, comme ça l'objet l'a dès qu'il existe*//>}
+                {cardVisible && <PlayingCard id={firstCardId} className = "fade-in" /* TODO: On peut mettre la classe d'animation fade-in ici, comme ça l'objet l'a dès qu'il existe*//>}
               </div>
             </div>
           </article>

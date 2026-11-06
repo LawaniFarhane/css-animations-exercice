@@ -14,7 +14,8 @@ type PlayingCardProps = {
   style?: React.CSSProperties;
   // Si true, la carte est affichée face cachée (on voit son dos).
   faceDown?: boolean;
-};
+  onAnimationEnd?: React.AnimationEventHandler<HTMLElement>;
+}; 
 
 export function PlayingCard({
   id,
@@ -23,12 +24,14 @@ export function PlayingCard({
   className = "",
   style,
   faceDown = false,
+  onAnimationEnd,
 }: PlayingCardProps) {
   return (
     <article
-      className={`playing-card ${faceDown ? "face-down" : ""} ${className}`}
+      className={`playing-card fade-in ${faceDown ? "face-down" : ""} ${className}`}
       id={id}
       style={style}
+      onAnimationEnd={onAnimationEnd}
       aria-label={`${manaCost === undefined ? "" : `, coût ${manaCost} manas`}`}
     >
       {/* Côté face : le contenu de la carte */}
